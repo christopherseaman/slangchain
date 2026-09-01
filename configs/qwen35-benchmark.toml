@@ -1,0 +1,37 @@
+[experiment]
+mode = "benchmark"
+
+[data]
+source = "data/processed/entries.jsonl"
+packed_dir = "data/processed/qwen35-benchmark-2048"
+train_through = 2023
+validation_through = 2024
+tokenizer_id = "Qwen/Qwen3.5-0.8B-Base"
+tokenizer_revision = "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+tokenizer_batch_size = 512
+max_records_per_split = 50000
+
+[model]
+model_id = "Qwen/Qwen3.5-0.8B-Base"
+revision = "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+context_length = 2048
+weights_dtype = "float32"
+gradient_checkpointing = false
+
+[training]
+output_dir = "artifacts/qwen35-benchmark"
+micro_batch_size = 1
+gradient_accumulation_steps = 1
+epochs = 1
+max_steps = 100
+max_eval_batches = 20
+learning_rate = 0.00002
+weight_decay = 0.1
+gradient_clip = 1.0
+warmup_ratio = 0.02
+checkpoint_interval = 100
+keep_checkpoints = 3
+log_interval = 5
+seed = 42
+num_workers = 0
+mixed_precision = "auto"

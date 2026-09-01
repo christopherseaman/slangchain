@@ -1,0 +1,34 @@
+[experiment]
+mode = "full"
+
+[data]
+source = "data/raw/UrbanDictionary_04-2026.db"
+packed_dir = "data/processed/qwen35-full-2048"
+train_through = 2023
+validation_through = 2024
+tokenizer_id = "Qwen/Qwen3.5-0.8B-Base"
+tokenizer_revision = "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+tokenizer_batch_size = 512
+
+[model]
+model_id = "Qwen/Qwen3.5-0.8B-Base"
+revision = "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+context_length = 2048
+weights_dtype = "float32"
+gradient_checkpointing = false
+
+[training]
+output_dir = "artifacts/qwen35-0.8b"
+micro_batch_size = 1
+gradient_accumulation_steps = 8
+epochs = 1
+learning_rate = 0.00002
+weight_decay = 0.1
+gradient_clip = 1.0
+warmup_ratio = 0.02
+checkpoint_interval = 1000
+keep_checkpoints = 3
+log_interval = 10
+seed = 42
+num_workers = 0
+mixed_precision = "auto"

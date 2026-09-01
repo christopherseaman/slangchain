@@ -1,0 +1,28 @@
+[data]
+path = "data/processed/entries.jsonl"
+train_through = 2023
+validation_through = 2024
+
+[model]
+context_length = 320
+embed_dim = 256
+heads = 8
+layers = 6
+dropout = 0.1
+year_origin = 2010.0
+year_scale = 10.0
+
+[training]
+output_dir = "artifacts/tiny"
+batch_size = 64
+steps = 3000
+learning_rate = 0.0003
+weight_decay = 0.1
+gradient_clip = 1.0
+eval_interval = 100
+eval_batches = 20
+log_interval = 20
+seed = 42
+num_workers = 0
+mixed_precision = "no"
+
