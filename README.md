@@ -82,6 +82,18 @@ The model and tokenizer are pinned to Qwen's immutable revision
 scratch model remains plain PyTorch. The same Qwen path uses MPS, CUDA, or CPU through Accelerate
 and does not require CUDA-only FlashAttention, bitsandbytes, or custom DeltaNet kernels.
 
+For a local dictionary-style UI, run Gradio ephemerally and keep the model resident in one process:
+
+```bash
+./web_app.sh
+```
+
+Open `http://<your-machine>:7860`, enter a year, and generate five entries. The root launcher
+binds to `0.0.0.0` for access from another machine and does not create a public share link. Use
+`WEB_HOST=127.0.0.1 ./web_app.sh` for localhost-only access. The app defaults to the preserved
+`artifacts/qwen35-0.8b-final/checkpoint-034798` checkpoint; pass `--checkpoint` to use another one.
+For a temporary public Gradio URL when network port access is unavailable, run `./web_app.sh --share`.
+
 This is a continued-pretraining and fluency demonstration, not a clean forecast evaluation.
 Qwen3.5 was released in 2026 and its original web training may already include Urban Dictionary
 or text from the nominal 2024–2026 holdout. Use the scratch model for the uncontaminated cutoff
